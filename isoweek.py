@@ -6,6 +6,13 @@ class Week(namedtuple('Week', ('year', 'week'))):
     """
     __slots__ = ()
 
+    def __new__(cls, year, week):
+        if week < 1 or week > 52:
+            return cls(year, 1) + (week - 1)
+        if year < 1 or year > 9999:
+            raise ValueError("year is out of range")
+        return super(Week, cls).__new__(cls, year, week)
+
     @classmethod
     def thisweek(cls):
         return cls(*(date.today().isocalendar()[:2]))
@@ -31,11 +38,6 @@ class Week(namedtuple('Week', ('year', 'week'))):
     def toordinal(self):
         return self.monday().toordinal() / 7
 
-    def normalize(self):
-        w = Week(self.toordinal())
-        self.year = w.year
-        self.week = w.week
-
     def year_week(self):
         return self.year, self.week
 
@@ -56,6 +58,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
 if __name__ == '__main__':
     w = Week(2011, 99)
     print w
+    w = Week(2011, 0)
     print str(w)
     print w.year
     print w.week
