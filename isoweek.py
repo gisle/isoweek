@@ -1,12 +1,12 @@
 from datetime import date, timedelta
 
-class isoweek(object):
+class Week(object):
     __slots__ = ('year', 'week')
 
     def __init__(self, *args):
         if len(args) == 1:
             o = args[0]
-            if isinstance(o, isoweek):
+            if isinstance(o, Week):
                 self.year = o.year
                 self.week = o.week
             elif isinstance(o, str) and len(o) == 7 and o[4] == 'W':
@@ -18,14 +18,14 @@ class isoweek(object):
             elif isinstance(o, int):
                 self.year, self.week, weekday = date.fromordinal(o * 7 + 1).isocalendar()
             else:
-                raise ValueError("Bad isoweek constructor")
+                raise ValueError("Bad isoweek.Week constructor")
         elif len(args) == 2:
             self.year, self.week = args
             self.normalize()
         elif len(args) == 0:
             self.year, self.week, weekday = date.today().isocalendar()
         else:
-            raise ValueError("Bad isoweek constructor")
+            raise ValueError("Bad isoweek.Week constructor")
 
     def day(self, num):
         d = date(self.year, 1, 4)  # The Jan 4th must be in week 1 according to ISO
@@ -43,7 +43,7 @@ class isoweek(object):
         return self
 
     def normalize(self):
-        w = isoweek(self.toordinal())
+        w = Week(self.toordinal())
         self.year = w.year
         self.week = w.week
 
@@ -54,7 +54,7 @@ class isoweek(object):
         return "%04dW%02d" % (self.year, self.week)
 
     def __add__(self, other):
-        w = isoweek(self)
+        w = Week(self)
         w.inc(other)
         return w
 
@@ -68,7 +68,7 @@ class isoweek(object):
         return self.inc(-other)
 
 if __name__ == '__main__':
-    w = isoweek(2011, 99)
+    w = Week(2011, 99)
     print w
     print str(w)
     print w.year
@@ -76,8 +76,8 @@ if __name__ == '__main__':
     print w.monday()
     print w.toordinal()
 
-    w = isoweek()
+    w = Week()
     print w
     w.inc()
     print w + 1
-    print w - isoweek()
+    print w - Week()
