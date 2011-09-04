@@ -1,33 +1,25 @@
 from datetime import date, timedelta
+from collections import namedtuple
 
-class Week(object):
+class Week(namedtuple('Week', ('year', 'week'))):
     """A Week represents a period of 7 days starting with a Monday.
     """
-    __slots__ = ('year', 'week')
+    __slots__ = ()
 
-    def __init__(self, *args):
-        if len(args) == 1:
-            o = args[0]
-            if isinstance(o, Week):
-                self.year = o.year
-                self.week = o.week
-            elif isinstance(o, str) and len(o) == 7 and o[4] == 'W':
-                self.year = int(o[0:4])
-                self.week = int(o[5:7])
-                self.normalize()
-            elif isinstance(o, date):
-                self.year, self.week, weekday = o.isocalendar()
-            elif isinstance(o, int):
-                self.year, self.week, weekday = date.fromordinal(o * 7 + 1).isocalendar()
-            else:
-                raise ValueError("Bad isoweek.Week constructor")
-        elif len(args) == 2:
-            self.year, self.week = args
-            self.normalize()
-        elif len(args) == 0:
-            self.year, self.week, weekday = date.today().isocalendar()
+    @classmethod
+    def thisweek(cls):
+        return cls(*(date.today().isocalendar()[:2]))
+
+    @classmethod
+    def fromordinal(cls, ordinal):
+        return cls(*(date.fromordinal(ordinal * 7 + 1).isocalendar()[:2]))
+
+    @classmethod
+    def fromstring(cls, isostring):
+        if isinstance(isostring, str) and len(isostring) == 7 and isostring[4] == 'W':
+           return cls(int(isostring[0:4]), int(isostring[5:7]))
         else:
-            raise ValueError("Bad isoweek.Week constructor")
+            raise ValueError("Week.tostring argument must be on the form <yyyy>W<ww>")
 
     def day(self, num):
         d = date(self.year, 1, 4)  # The Jan 4th must be in week 1 according to ISO
@@ -38,11 +30,6 @@ class Week(object):
 
     def toordinal(self):
         return self.monday().toordinal() / 7
-
-    def inc(self, increment=1):
-        self.week += increment
-        self.normalize()
-        return self
 
     def normalize(self):
         w = Week(self.toordinal())
@@ -58,31 +45,13 @@ class Week(object):
     def __repr__(self):
         return "Week(%d,%d)" % (self.year, self.week)
 
-    def __eq__(self, other):
-        return self.week == other.week and self.year == other.year
-
-    def __ne__(self, other):
-        return self.week != other.week or self.year != other.year
-
-    def __cmp__(self, other):
-        return cmp(self.year_week(), other.year_week())
-
-    def __hash__(self):
-        return self.year * 100 + self.week
-
     def __add__(self, other):
-        w = Week(self)
-        w.inc(other)
-        return w
+        return Week.fromordinal(self.toordinal() + other)
 
     def __sub__(self, other):
+        if isinstance(other, int):
+            return self.__add__(-other)
         return self.toordinal() - other.toordinal()
-
-    def __iadd__(self, other):
-        return self.inc(other)
-
-    def __isub__(self, other):
-        return self.inc(-other)
 
 if __name__ == '__main__':
     w = Week(2011, 99)
@@ -93,17 +62,17 @@ if __name__ == '__main__':
     print w.monday()
     print w.toordinal()
 
-    w = Week()
+    w = Week.thisweek()
     print w
-    w.inc()
     print w + 1
-    print w - Week()
+    print w - 1
+    print w - (Week.thisweek() + 3)
 
     d = {}
-    d[Week()] = "this week"
-    print d[Week()]
+    d[Week.thisweek()] = "this week"
+    print d[Week.thisweek()]
     print d
 
-    print Week("2011W01") < Week("2011W02")
-    print Week("2011W01") != Week("2011W02")
-    print Week("2010W01") < Week("2011W01")
+    print Week.fromstring("2011W01") < Week.fromstring("2011W02")
+    print Week.fromstring("2011W01") != Week.fromstring("2011W02")
+    print Week.fromstring("2010W01") < Week.fromstring("2011W01")
