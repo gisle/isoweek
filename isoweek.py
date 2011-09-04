@@ -35,6 +35,24 @@ class Week(namedtuple('Week', ('year', 'week'))):
     def monday(self):
         return self.day(0)
 
+    def tuesday(self):
+        return self.day(1)
+
+    def wednesday(self):
+        return self.day(2)
+
+    def thursday(self):
+        return self.day(3)
+
+    def friday(self):
+        return self.day(4)
+
+    def saturday(self):
+        return self.day(5)
+
+    def sunday(self):
+        return self.day(6)
+
     def toordinal(self):
         return self.monday().toordinal() / 7
 
