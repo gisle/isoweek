@@ -26,7 +26,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
     @classmethod
     def fromordinal(cls, ordinal):
         """Return the week corresponding to the proleptic Gregorian ordinal,
-        where January 1 of year 1 startw the week with ordinal 1.
+        where January 1 of year 1 starts the week with ordinal 1.
         """
         if ordinal < 1:
             raise ValueError("ordinal must be >= 1")
@@ -94,7 +94,8 @@ class Week(namedtuple('Week', ('year', 'week'))):
         return Week.fromordinal(self.toordinal() + other)
 
     def __sub__(self, other):
-        """Subtracting two week gives the number of weeks between them as an integer.  Subtracting an integer gives another Week."""
+        """Subtracting two weeks give the number of weeks between them as an integer.
+        Subtracting an integer gives another Week in the past."""
         if isinstance(other, int):
             return self.__add__(-other)
         return self.toordinal() - other.toordinal()
