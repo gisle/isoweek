@@ -1,6 +1,8 @@
 from datetime import date, timedelta
 
 class Week(object):
+    """A Week represents a period of 7 days starting with a Monday.
+    """
     __slots__ = ('year', 'week')
 
     def __init__(self, *args):
@@ -50,8 +52,11 @@ class Week(object):
     def year_week(self):
         return self.year, self.week
 
-    def __repr__(self):
+    def __str__(self):
         return "%04dW%02d" % (self.year, self.week)
+
+    def __repr__(self):
+        return "Week(%d,%d)" % (self.year, self.week)
 
     def __add__(self, other):
         w = Week(self)
@@ -81,3 +86,7 @@ if __name__ == '__main__':
     w.inc()
     print w + 1
     print w - Week()
+
+    d = {}
+    d[Week()] = 1
+    print d
