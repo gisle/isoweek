@@ -58,6 +58,18 @@ class Week(object):
     def __repr__(self):
         return "Week(%d,%d)" % (self.year, self.week)
 
+    def __eq__(self, other):
+        return self.week == other.week and self.year == other.year
+
+    def __ne__(self, other):
+        return self.week != other.week or self.year != other.year
+
+    def __cmp__(self, other):
+        return cmp(self.year_week(), other.year_week())
+
+    def __hash__(self):
+        return self.year * 100 + self.week
+
     def __add__(self, other):
         w = Week(self)
         w.inc(other)
@@ -88,5 +100,10 @@ if __name__ == '__main__':
     print w - Week()
 
     d = {}
-    d[Week()] = 1
+    d[Week()] = "this week"
+    print d[Week()]
     print d
+
+    print Week("2011W01") < Week("2011W02")
+    print Week("2011W01") != Week("2011W02")
+    print Week("2010W01") < Week("2011W01")
