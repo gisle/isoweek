@@ -7,6 +7,11 @@ class Week(namedtuple('Week', ('year', 'week'))):
     __slots__ = ()
 
     def __new__(cls, year, week):
+        """Initialize a Week tuple with the given year and week number.
+
+        The week number does not have to be within range.  The numbers
+        will be normalized if not.
+        """
         if week < 1 or week > 52:
             return cls(year, 1) + (week - 1)
         if year < 1 or year > 9999:
@@ -15,60 +20,81 @@ class Week(namedtuple('Week', ('year', 'week'))):
 
     @classmethod
     def thisweek(cls):
+        """Return the current week (local time)."""
         return cls(*(date.today().isocalendar()[:2]))
 
     @classmethod
     def fromordinal(cls, ordinal):
-        return cls(*(date.fromordinal(ordinal * 7 + 1).isocalendar()[:2]))
+        """Return the week corresponding to the proleptic Gregorian ordinal,
+        where January 1 of year 1 startw the week with ordinal 1.
+        """
+        if ordinal < 1:
+            raise ValueError("ordinal must be >= 1")
+        return cls(*(date.fromordinal((ordinal-1) * 7 + 1).isocalendar()[:2]))
 
     @classmethod
     def fromstring(cls, isostring):
+        """Return a week initialized from an ISO formatted string like "2011W35"."""
         if isinstance(isostring, str) and len(isostring) == 7 and isostring[4] == 'W':
            return cls(int(isostring[0:4]), int(isostring[5:7]))
         else:
             raise ValueError("Week.tostring argument must be on the form <yyyy>W<ww>")
 
     def day(self, num):
+        """Return the given day of week as a date object.  Day 0 is the Monday."""
         d = date(self.year, 1, 4)  # The Jan 4th must be in week 1 according to ISO
         return d + timedelta(weeks=self.week-1, days=-d.weekday() + num)
 
     def monday(self):
+        """Return the first day of the week as a date object"""
         return self.day(0)
 
     def tuesday(self):
+        """Return the second day the week as a date object"""
         return self.day(1)
 
     def wednesday(self):
+        """Return the third day the week as a date object"""
         return self.day(2)
 
     def thursday(self):
+        """Return the forth day the week as a date object"""
         return self.day(3)
 
     def friday(self):
+        """Return the fifth day the week as a date object"""
         return self.day(4)
 
     def saturday(self):
+        """Return the sixth day the week as a date object"""
         return self.day(5)
 
     def sunday(self):
+        """Return the last day the week as a date object"""
         return self.day(6)
 
     def toordinal(self):
-        return self.monday().toordinal() / 7
+        """Returns the proleptic Gregorian ordinal the week, where January 1 of year 1 starts the first week."""
+        return self.monday().toordinal() / 7 + 1
 
     def year_week(self):
+        """Return a regular tuple containing the (year, week)"""
         return self.year, self.week
 
     def __str__(self):
+        """Return a ISO formatted week string like "2011W35". """
         return "%04dW%02d" % (self.year, self.week)
 
     def __repr__(self):
+        """Return a string like "Week(2011,35)"."""
         return "Week(%d,%d)" % (self.year, self.week)
 
     def __add__(self, other):
+        """Adding integers to a Week gives the week that many number of weeks into the future."""
         return Week.fromordinal(self.toordinal() + other)
 
     def __sub__(self, other):
+        """Subtracting two week gives the number of weeks between them as an integer.  Subtracting an integer gives another Week."""
         if isinstance(other, int):
             return self.__add__(-other)
         return self.toordinal() - other.toordinal()
@@ -82,6 +108,8 @@ if __name__ == '__main__':
     print w.week
     print w.monday()
     print w.toordinal()
+
+    print Week(1,1).toordinal()
 
     w = Week.thisweek()
     print w
