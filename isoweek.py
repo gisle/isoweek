@@ -40,6 +40,11 @@ class Week(namedtuple('Week', ('year', 'week'))):
         else:
             raise ValueError("Week.tostring argument must be on the form <yyyy>W<ww>")
 
+    @classmethod
+    def withdate(cls, date):
+        """Return the week that contains the given date"""
+        return cls(*(date.isocalendar()[:2]))
+
     def day(self, num):
         """Return the given day of week as a date object.  Day 0 is the Monday."""
         d = date(self.year, 1, 4)  # The Jan 4th must be in week 1 according to ISO
@@ -111,6 +116,8 @@ if __name__ == '__main__':
     print w.toordinal()
 
     print Week(1,1).toordinal()
+
+    print Week.withdate(date(1,1,1))
 
     w = Week.thisweek()
     print w
