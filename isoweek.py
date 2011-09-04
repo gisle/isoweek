@@ -63,7 +63,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
         return self.day(2)
 
     def thursday(self):
-        """Return the forth day the week as a date object"""
+        """Return the fourth day the week as a date object"""
         return self.day(3)
 
     def friday(self):
