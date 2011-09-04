@@ -45,6 +45,15 @@ class Week(namedtuple('Week', ('year', 'week'))):
         """Return the week that contains the given date"""
         return cls(*(date.isocalendar()[:2]))
 
+    @classmethod
+    def weeks_of_year(cls, year):
+        """Returns an iterator over the weeks of the given year.
+        Years have either 52 or 53 weeks."""
+        w = cls(year, 1)
+        while w.year == year:
+            yield w
+            w = w + 1
+
     def day(self, num):
         """Return the given day of week as a date object.  Day 0 is the Monday."""
         d = date(self.year, 1, 4)  # The Jan 4th must be in week 1 according to ISO
@@ -133,3 +142,5 @@ if __name__ == '__main__':
     print Week.fromstring("2011W01") < Week.fromstring("2011W02")
     print Week.fromstring("2011W01") != Week.fromstring("2011W02")
     print Week.fromstring("2010W01") < Week.fromstring("2011W01")
+
+    print list(Week.weeks_of_year(2011))
