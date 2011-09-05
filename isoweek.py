@@ -91,6 +91,11 @@ class Week(namedtuple('Week', ('year', 'week'))):
         """Returns the proleptic Gregorian ordinal the week, where January 1 of year 1 starts the first week."""
         return self.monday().toordinal() / 7 + 1
 
+    def replace(self, year=None, week=None):
+        """Returns a Week with either the year or week attribute value replaced"""
+        return self.__class__(self.year if year is None else year,
+                              self.week if week is None else week)
+
     def year_week(self):
         """Return a regular tuple containing the (year, week)"""
         return self.year, self.week

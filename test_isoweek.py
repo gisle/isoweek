@@ -37,6 +37,14 @@ class TestWeek(unittest.TestCase):
         self.assertEqual(w.isoformat(), "2011W20")
         self.assertEqual(repr(w), "Week(2011,20)")
 
+    def test_replace(self):
+        w = Week(2011, 20)
+        self.assertEqual(w.replace(), w)
+        self.assertEqual(w.replace(year=2010), Week(2010, 20))
+        self.assertEqual(w.replace(week=2), Week(2011, 2))
+        self.assertEqual(w.replace(week=99), Week(2012, 47))
+        self.assertEqual(w.replace(year=1, week=1), Week(1, 1))
+
     def test_days(self):
         w = Week(2011, 20)
         self.assertEqual(w.monday().isoformat(),    "2011-05-16")
