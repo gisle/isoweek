@@ -17,4 +17,4 @@ to the datetime.date objects.  Example code::
     w = Week(2011, 20)
     print "Week %s starts on %s" % (w, w.monday().isoformat())
 
-    print "Current week: %s" % (Week.thisweek().week,)
+    print "Current week: %d" % (Week.thisweek().week,)
