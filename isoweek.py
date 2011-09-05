@@ -102,13 +102,13 @@ class Week(namedtuple('Week', ('year', 'week'))):
 
     def __str__(self):
         """Return a ISO formatted week string like "2011W35". """
-        return "%04dW%02d" % self
+        return '%04dW%02d' % self
 
     isoformat = __str__  # compatibility with datetime.date
 
     def __repr__(self):
-        """Return a string like "Week(2011,35)"."""
-        return "Week(%d,%d)" % self
+        """Return a string like "isoweek.Week(2011, 35)"."""
+        return __name__ + '.' + self.__class__.__name__ + '(%d, %d)' % self
 
     def __add__(self, other):
         """Adding integers to a Week gives the week that many number of weeks into the future."""

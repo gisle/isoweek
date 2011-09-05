@@ -35,7 +35,7 @@ class TestWeek(unittest.TestCase):
         w = Week(2011, 20)
         self.assertEqual(str(w), "2011W20")
         self.assertEqual(w.isoformat(), "2011W20")
-        self.assertEqual(repr(w), "Week(2011,20)")
+        self.assertEqual(repr(w), "isoweek.Week(2011, 20)")
 
     def test_replace(self):
         w = Week(2011, 20)
