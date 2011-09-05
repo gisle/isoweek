@@ -3,6 +3,15 @@ from collections import namedtuple
 
 class Week(namedtuple('Week', ('year', 'week'))):
     """A Week represents a period of 7 days starting with a Monday.
+    Weeks are identified by a year and week number within the year.
+    This corresponds to the read-only attributes 'year' and 'week'.
+
+    Week 1 of a year is defined to be the first week with 4 or more days in
+    January.  The preceeding week is either week 52 or 53 of the
+    preceeding year.
+
+    Week objects are tuples, and thus immutable, with an interface
+    similar to the standard datetime.date class.
     """
     __slots__ = ()
 
