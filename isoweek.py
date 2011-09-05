@@ -19,7 +19,8 @@ class Week(namedtuple('Week', ('year', 'week'))):
         """Initialize a Week tuple with the given year and week number.
 
         The week number does not have to be within range.  The numbers
-        will be normalized if not.
+        will be normalized if not.  The year must be within the range
+        1 to 9999.
         """
         if week < 1 or week > 52:
             return cls(year, 1) + (week - 1)
