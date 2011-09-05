@@ -31,6 +31,12 @@ class TestWeek(unittest.TestCase):
         self.assertEqual(weeks[0], Week(2011,1))
         self.assertEqual(weeks[-1], Week(2011,52))
 
+    def test_stringification(self):
+        w = Week(2011, 20)
+        self.assertEqual(str(w), "2011W20")
+        self.assertEqual(w.isoformat(), "2011W20")
+        self.assertEqual(repr(w), "Week(2011,20)")
+
     def test_days(self):
         w = Week(2011, 20)
         self.assertEqual(w.monday().isoformat(),    "2011-05-16")

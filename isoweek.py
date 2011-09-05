@@ -99,6 +99,8 @@ class Week(namedtuple('Week', ('year', 'week'))):
         """Return a ISO formatted week string like "2011W35". """
         return "%04dW%02d" % self
 
+    isoformat = __str__  # compatibility with datetime.date
+
     def __repr__(self):
         """Return a string like "Week(2011,35)"."""
         return "Week(%d,%d)" % self
