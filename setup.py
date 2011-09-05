@@ -8,7 +8,7 @@ setup(
     url='http://github.com/gisle/isoweek',
     py_modules=['isoweek'],
     license='LICENSE.txt',
-    long_description=open("README.txt").read(),
+    long_description=open("README.rst").read(),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
