@@ -7,7 +7,7 @@ setup(
     author_email='gisle@aas.no',
     url='http://github.com/gisle/isoweek',
     py_modules=['isoweek'],
-    license='LICENSE.txt',
+    license='BSD',
     long_description=open("README.rst").read(),
     classifiers=[
         'Development Status :: 3 - Alpha',
