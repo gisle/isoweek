@@ -113,34 +113,3 @@ class Week(namedtuple('Week', ('year', 'week'))):
         if isinstance(other, int):
             return self.__add__(-other)
         return self.toordinal() - other.toordinal()
-
-if __name__ == '__main__':
-    w = Week(2011, 99)
-    print w
-    w = Week(2011, 0)
-    print str(w)
-    print w.year
-    print w.week
-    print w.monday()
-    print w.toordinal()
-
-    print Week(1,1).toordinal()
-
-    print Week.withdate(date(1,1,1))
-
-    w = Week.thisweek()
-    print w
-    print w + 1
-    print w - 1
-    print w - (Week.thisweek() + 3)
-
-    d = {}
-    d[Week.thisweek()] = "this week"
-    print d[Week.thisweek()]
-    print d
-
-    print Week.fromstring("2011W01") < Week.fromstring("2011W02")
-    print Week.fromstring("2011W01") != Week.fromstring("2011W02")
-    print Week.fromstring("2010W01") < Week.fromstring("2011W01")
-
-    print list(Week.weeks_of_year(2011))
