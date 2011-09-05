@@ -117,6 +117,6 @@ class Week(namedtuple('Week', ('year', 'week'))):
     def __sub__(self, other):
         """Subtracting two weeks give the number of weeks between them as an integer.
         Subtracting an integer gives another Week in the past."""
-        if isinstance(other, int):
+        if isinstance(other, (int, long)):
             return self.__add__(-other)
         return self.toordinal() - other.toordinal()
