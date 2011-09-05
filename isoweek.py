@@ -35,10 +35,10 @@ class Week(namedtuple('Week', ('year', 'week'))):
     @classmethod
     def fromstring(cls, isostring):
         """Return a week initialized from an ISO formatted string like "2011W35"."""
-        if isinstance(isostring, str) and len(isostring) == 7 and isostring[4] == 'W':
+        if isinstance(isostring, basestring) and len(isostring) == 7 and isostring[4] == 'W':
            return cls(int(isostring[0:4]), int(isostring[5:7]))
         else:
-            raise ValueError("Week.tostring argument must be on the form <yyyy>W<ww>")
+            raise ValueError("Week.tostring argument must be on the form <yyyy>W<ww>; got %r" % (isostring,))
 
     @classmethod
     def withdate(cls, date):
