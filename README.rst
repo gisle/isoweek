@@ -15,7 +15,7 @@ to the datetime.date objects.  Example code::
 
     from isoweek import Week
     w = Week(2011, 20)
-    print "Week %s starts on %s" % (w, w.monday().isoformat())
+    print "Week %s starts on %s" % (w, w.monday())
 
     print "Current week number is", Week.thisweek().week
     print "Next week is", Week.thisweek() + 1
