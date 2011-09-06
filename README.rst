@@ -1,16 +1,16 @@
 ISO Week
 ========
 
-The isoweek module provide the class `Week`.  Instances represent specific weeks
+The isoweek module provide the class *Week*.  Instances represent specific weeks
 spanning Monday to Sunday.  There are 52 or 53 numbered weeks in a year.  Week
 1 is defined to be the first week with 4 or more days in January.
 
 It's called isoweek because this is the week definition of ISO 8601.  This
 standard also define a notation for identifying weeks; YYYYWww (where the "W"
 is a literal).  An example is "2011W20" which denotes the 20th week of year
-2011.  `Week` instances stringify to this form.
+2011.  *Week* instances stringify to this form.
 
-The `Week` instances are light weight and immutable with an interface similar
+The *Week* instances are light weight and immutable with an interface similar
 to the datetime.date objects.  Example code::
 
     from isoweek import Week
@@ -23,7 +23,9 @@ to the datetime.date objects.  Example code::
 Reference
 ----------
 
-`class` isoweek.Week(*year*, *week*)
+Constructor:
+
+*class* isoweek.Week(*year*, *week*)
     All arguments are required.  Arguments should be ints.
 
     If the week number isn't within the range of the given year,
@@ -32,20 +34,20 @@ Reference
 
 Other constructors, all class methods:
 
-`classmethod` Week.thisweek()
+*classmethod* Week.thisweek()
     Return the current week (local time).
 
-`classmethod` Week.fromordinal(*ordinal*)
+*classmethod* Week.fromordinal(*ordinal*)
     Return the week corresponding to the proleptic Gregorian ordinal,
     where January 1 of year 1 starts the week with ordinal 1.
 
-`classmethod` Week.fromstring(*isostring*)
+*classmethod* Week.fromstring(*isostring*)
     Return a week initialized from an ISO formatted string like "2011W35".
 
-`classmethod` Week.withdate(*date*)
+*classmethod* Week.withdate(*date*)
     Return the week that contains the given date
 
-`classmethod` Week.weeks_of_year(*year*)
+*classmethod* Week.weeks_of_year(*year*)
     Returns an iterator over the weeks of the given year.
 
 Instance attributes (read-only):
