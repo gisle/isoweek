@@ -7,7 +7,7 @@ spanning Monday to Sunday.  There are 52 or 53 numbered weeks in a year.  Week
 
 It's called isoweek because this is the week definition of ISO 8601.  This
 standard also define a notation for identifying weeks; YYYYWww (where the "W"
-is a literal).  An example is "2011W20" which denotes the 20th week of year
+is a literal).  An example is "2011W08" which denotes the 8th week of year
 2011.  *Week* instances stringify to this form.
 
 The *Week* instances are light weight and immutable with an interface similar
@@ -90,7 +90,7 @@ Week.monday(), Week.tuesday(),.. Week.sunday()
 
 Week.isoformat()
     Return a string representing the week in ISO 8610 format, "YYYYWww".
-    For example Week(2011, 2).isoformat() == '2011W02'.
+    For example Week(2011, 8).isoformat() == '2011W08'.
 
 Week.__str__()
     For a Week w, str(w) is equivalent to w.isoformat()
