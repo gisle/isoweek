@@ -42,7 +42,9 @@ Other constructors, all class methods:
     where January 1 of year 1 starts the week with ordinal 1.
 
 *classmethod* Week.fromstring(*isostring*)
-    Return a week initialized from an ISO formatted string like "2011W35".
+    Return a week initialized from an ISO formatted string like "2011W08"
+    or "2011-W08".  Note that weeks always stringify back in the former
+    and more compact format.
 
 *classmethod* Week.withdate(*date*)
     Return the week that contains the given date

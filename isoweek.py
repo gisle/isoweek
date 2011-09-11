@@ -44,7 +44,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
 
     @classmethod
     def fromstring(cls, isostring):
-        """Return a week initialized from an ISO formatted string like "2011W35"."""
+        """Return a week initialized from an ISO formatted string like "2011W08" or "2011-W08"."""
         if isinstance(isostring, basestring) and len(isostring) == 7 and isostring[4] == 'W':
            return cls(int(isostring[0:4]), int(isostring[5:7]))
         elif isinstance(isostring, basestring) and len(isostring) == 8 and isostring[4:6] == '-W':
