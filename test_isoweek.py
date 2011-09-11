@@ -21,6 +21,8 @@ class TestWeek(unittest.TestCase):
 
         w = Week.fromstring("2011W01")
         self.assertEqual(str(w), "2011W01")
+        w = Week.fromstring("2011-W01")
+        self.assertEqual(str(w), "2011W01")
 
         from datetime import date
         w = Week.withdate(date(2011, 5, 17))
