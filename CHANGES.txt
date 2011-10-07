@@ -1,7 +1,13 @@
+v1.0.1, 2011-10-07
+
+    Constructor failed for week 53 in years with 53 weeks
+
+
 v1.0.0, 2011-10-07
 
     Allow "-" after year in Week.fromstring
     Documentation tweaks
+
 
 v0.2.0, 2011-09-06
 
@@ -12,6 +18,7 @@ v0.2.0, 2011-09-06
     repr() in the same style as for datetime.date
 
     Improved documentation
+
 
 v0.1.0, 2011-09-05
 
