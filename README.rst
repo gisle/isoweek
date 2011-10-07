@@ -48,7 +48,7 @@ Other constructors, all class methods:
     and more compact format.
 
 *classmethod* Week.withdate(*date*)
-    Return the week that contains the given date
+    Return the week that contains the given datetime.date.
 
 *classmethod* Week.weeks_of_year(*year*)
     Returns an iterator over the weeks of the given year.

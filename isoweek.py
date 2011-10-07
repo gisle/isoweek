@@ -54,7 +54,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
 
     @classmethod
     def withdate(cls, date):
-        """Return the week that contains the given date"""
+        """Return the week that contains the given datetime.date"""
         return cls(*(date.isocalendar()[:2]))
 
     @classmethod
