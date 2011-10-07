@@ -9,9 +9,24 @@ class TestWeek(unittest.TestCase):
 
         w = Week(2011,0)
         self.assertEqual(str(w), "2010W52")
+        w = Week(2011,-1)
+        self.assertEqual(str(w), "2010W51")
 
-        w = Week(2011,60)
-        self.assertEqual(str(w), "2012W08")
+        w = Week(2011,52)
+        self.assertEqual(str(w), "2011W52")
+        w = Week(2011,53)
+        self.assertEqual(str(w), "2012W01")
+        w = Week(2011,54)
+        self.assertEqual(str(w), "2012W02")
+
+        w = Week(2009,51)
+        self.assertEqual(str(w), "2009W51")
+        w = Week(2009,52)
+        self.assertEqual(str(w), "2009W52")
+        w = Week(2009,53)
+        self.assertEqual(str(w), "2009W53")
+        w = Week(2009,54)
+        self.assertEqual(str(w), "2010W01")
 
         w = Week.thisweek()
         self.assertTrue(w)

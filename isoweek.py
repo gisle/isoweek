@@ -40,7 +40,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
         """
         if ordinal < 1:
             raise ValueError("ordinal must be >= 1")
-        return cls(*(date.fromordinal((ordinal-1) * 7 + 1).isocalendar()[:2]))
+        return super(Week, cls).__new__(cls, *(date.fromordinal((ordinal-1) * 7 + 1).isocalendar()[:2]))
 
     @classmethod
     def fromstring(cls, isostring):
