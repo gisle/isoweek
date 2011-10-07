@@ -29,8 +29,9 @@ Constructor:
     All arguments are required.  Arguments should be ints.
 
     If the week number isn't within the range of the given year,
-    the year is adjusted to make week within range.  The final year
-    must be within range 1 to 9999.
+    the year is adjusted to make week number within range.  The
+    final year must be within range 1 to 9999.  If not ValueError
+    is raised.
 
 Other constructors, all class methods:
 
