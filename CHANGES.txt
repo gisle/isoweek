@@ -1,3 +1,10 @@
+v1.1.0, 2011-10-10
+
+    Add min/max/resolution attibutes to Week (like datetime.date has)
+    Introduce Week.last_week_of_year() method
+    Support arithmethics with timedelta
+
+
 v1.0.1, 2011-10-07
 
     Constructor failed for week 53 in years with 53 weeks

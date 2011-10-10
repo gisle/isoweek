@@ -1,7 +1,7 @@
 from distutils.core import setup
 setup(
     name = 'isoweek',
-    version = '1.0.1',
+    version = '1.1.0',
     description = 'Objects representing a week',
     author='Gisle Aas',
     author_email='gisle@aas.no',
