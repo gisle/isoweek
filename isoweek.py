@@ -132,3 +132,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
         if isinstance(other, (int, long)):
             return self.__add__(-other)
         return self.toordinal() - other.toordinal()
+
+Week.min = Week(1,1)
+Week.max = Week(9999,52)
+Week.resolution = timedelta(weeks=1)
