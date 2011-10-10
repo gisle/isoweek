@@ -43,10 +43,20 @@ class TestWeek(unittest.TestCase):
         w = Week.withdate(date(2011, 5, 17))
         self.assertEqual(str(w), "2011W20")
 
+        weeks = list(Week.weeks_of_year(2009))
+        self.assertEqual(len(weeks), 53)
+        self.assertEqual(weeks[0], Week(2009,1))
+        self.assertEqual(weeks[-1], Week(2009,53))
+
         weeks = list(Week.weeks_of_year(2011))
         self.assertEqual(len(weeks), 52)
         self.assertEqual(weeks[0], Week(2011,1))
         self.assertEqual(weeks[-1], Week(2011,52))
+
+        self.assertEqual(Week.last_week_of_year(2009), Week(2009, 53))
+        self.assertEqual(Week.last_week_of_year(2010), Week(2010, 52))
+        self.assertEqual(Week.last_week_of_year(2011), Week(2011, 52))
+        self.assertEqual(Week.last_week_of_year(9999), Week(9999, 52))
 
     def test_stringification(self):
         w = Week(2011, 20)

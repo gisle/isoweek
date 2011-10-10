@@ -66,6 +66,21 @@ class Week(namedtuple('Week', ('year', 'week'))):
             yield w
             w += 1
 
+    @classmethod
+    def last_week_of_year(cls, year):
+        """Returns the last week of the given year.
+        This week with either have week-number 52 or 53.
+
+        This will be the same as Week(year+1, 0), but will even work for
+        year 9999 where this expression would overflow.
+
+        The first week of a given year is simply Week(year, 1), so there
+        is no dedicated classmethod for that.
+        """
+        if year == cls.max.year:
+            return cls.max
+        return cls(year+1, 0)
+
     def day(self, num):
         """Return the given day of week as a date object.  Day 0 is the Monday."""
         d = date(self.year, 1, 4)  # The Jan 4th must be in week 1 according to ISO

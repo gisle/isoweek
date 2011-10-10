@@ -53,6 +53,9 @@ Other constructors, all class methods:
 *classmethod* Week.weeks_of_year(*year*)
     Returns an iterator over the weeks of the given year.
 
+*classmethod* Week.last_week_of_year(*year*)
+    Returns the last week of the given year.
+
 Instance attributes (read-only):
 
 Week.year
