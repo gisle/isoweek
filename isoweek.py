@@ -64,7 +64,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
         w = cls(year, 1)
         while w.year == year:
             yield w
-            w = w + 1
+            w += 1
 
     def day(self, num):
         """Return the given day of week as a date object.  Day 0 is the Monday."""
