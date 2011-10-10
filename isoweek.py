@@ -138,13 +138,17 @@ class Week(namedtuple('Week', ('year', 'week'))):
         return __name__ + '.' + self.__class__.__name__ + '(%d, %d)' % self
 
     def __add__(self, other):
-        """Adding integers to a Week gives the week that many number of weeks into the future."""
+        """Adding integers to a Week gives the week that many number of weeks into the future.
+        Adding with datetime.timedelta is also supported.
+        """
+        if isinstance(other, timedelta):
+            other = other.days / 7
         return Week.fromordinal(self.toordinal() + other)
 
     def __sub__(self, other):
         """Subtracting two weeks give the number of weeks between them as an integer.
         Subtracting an integer gives another Week in the past."""
-        if isinstance(other, (int, long)):
+        if isinstance(other, (int, long, timedelta)):
             return self.__add__(-other)
         return self.toordinal() - other.toordinal()
 

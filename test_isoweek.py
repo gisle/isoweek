@@ -121,5 +121,8 @@ class TestWeek(unittest.TestCase):
         self.assertEqual(w - Week(2011, 1), 19)
         self.assertEqual(Week(2011, 1) - w, -19)
 
+        self.assertEqual(str(w + Week.resolution),   "2011W21")
+        self.assertEqual(str(w - Week.resolution),   "2011W19")
+
 if __name__ == '__main__':
     unittest.main()
