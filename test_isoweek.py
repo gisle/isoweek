@@ -33,6 +33,10 @@ class TestWeek(unittest.TestCase):
 
         w = Week.fromordinal(1)
         self.assertEqual(str(w), "0001W01")
+        w = Week.fromordinal(2)
+        self.assertEqual(str(w), "0001W02")
+        w = Week.fromordinal(521723)
+        self.assertEqual(str(w), "9999W52")
 
         w = Week.fromstring("2011W01")
         self.assertEqual(str(w), "2011W01")
@@ -57,6 +61,23 @@ class TestWeek(unittest.TestCase):
         self.assertEqual(Week.last_week_of_year(2010), Week(2010, 52))
         self.assertEqual(Week.last_week_of_year(2011), Week(2011, 52))
         self.assertEqual(Week.last_week_of_year(9999), Week(9999, 52))
+
+        self.assertRaises(ValueError, lambda: Week(0, 0))
+        self.assertRaises(ValueError, lambda: Week.fromstring("0000W00"))
+        self.assertRaises(ValueError, lambda: Week.fromstring("foo"))
+        self.assertRaises(ValueError, lambda: Week.fromordinal(-1))
+        self.assertRaises(ValueError, lambda: Week.fromordinal(0))
+        self.assertRaises(ValueError, lambda: Week.fromordinal(521724))
+        self.assertRaises(ValueError, lambda: Week.last_week_of_year(0))
+        self.assertRaises(ValueError, lambda: Week.last_week_of_year(10000))
+
+    def test_mix_max(self):
+        self.assertEqual(Week.min, Week(1,1))
+        self.assertEqual(Week.max, Week(9999,52))
+        self.assertEqual(Week.resolution.days, 7)
+
+        self.assertRaises(ValueError, lambda: Week.min - 1)
+        self.assertRaises(ValueError, lambda: Week.max + 1)
 
     def test_stringification(self):
         w = Week(2011, 20)
