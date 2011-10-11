@@ -116,7 +116,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
 
     def toordinal(self):
         """Returns the proleptic Gregorian ordinal the week, where January 1 of year 1 starts the first week."""
-        return self.monday().toordinal() / 7 + 1
+        return self.monday().toordinal() // 7 + 1
 
     def replace(self, year=None, week=None):
         """Returns a Week with either the year or week attribute value replaced"""
@@ -142,7 +142,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
         Adding with datetime.timedelta is also supported.
         """
         if isinstance(other, timedelta):
-            other = other.days / 7
+            other = other.days // 7
         return Week.fromordinal(self.toordinal() + other)
 
     def __sub__(self, other):
