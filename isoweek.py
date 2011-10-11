@@ -45,9 +45,9 @@ class Week(namedtuple('Week', ('year', 'week'))):
     @classmethod
     def fromstring(cls, isostring):
         """Return a week initialized from an ISO formatted string like "2011W08" or "2011-W08"."""
-        if isinstance(isostring, basestring) and len(isostring) == 7 and isostring[4] == 'W':
+        if isinstance(isostring, str) and len(isostring) == 7 and isostring[4] == 'W':
            return cls(int(isostring[0:4]), int(isostring[5:7]))
-        elif isinstance(isostring, basestring) and len(isostring) == 8 and isostring[4:6] == '-W':
+        elif isinstance(isostring, str) and len(isostring) == 8 and isostring[4:6] == '-W':
            return cls(int(isostring[0:4]), int(isostring[6:8]))
         else:
             raise ValueError("Week.tostring argument must be on the form <yyyy>W<ww>; got %r" % (isostring,))
@@ -148,7 +148,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
     def __sub__(self, other):
         """Subtracting two weeks give the number of weeks between them as an integer.
         Subtracting an integer gives another Week in the past."""
-        if isinstance(other, (int, long, timedelta)):
+        if isinstance(other, (int, timedelta)):
             return self.__add__(-other)
         return self.toordinal() - other.toordinal()
 

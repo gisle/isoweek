@@ -112,8 +112,6 @@ class TestWeek(unittest.TestCase):
         self.assertEqual(str(w + 0),   "2011W20")
         self.assertEqual(str(w + 1),   "2011W21")
         self.assertEqual(str(w - 1),   "2011W19")
-        self.assertEqual(str(w + 1L),  "2011W21")
-        self.assertEqual(str(w - 1L),  "2011W19")
         self.assertEqual(str(w + 52),  "2012W20")
         self.assertEqual(str(w - 104), "2009W21")
 
