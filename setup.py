@@ -1,3 +1,8 @@
+import sys
+if sys.version_info < (2, 6, 0):
+    print('You need Python 2.6 or better to install isoweek')
+    sys.exit(1)
+
 from distutils.core import setup
 setup(
     name = 'isoweek',
