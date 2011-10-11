@@ -1,6 +1,12 @@
 from datetime import date, timedelta
 from collections import namedtuple
 
+import sys
+if sys.version >= '3':
+    # compatiblity tweaks
+    basestring = str
+    long = int
+
 class Week(namedtuple('Week', ('year', 'week'))):
     """A Week represents a period of 7 days starting with a Monday.
     Weeks are identified by a year and week number within the year.
