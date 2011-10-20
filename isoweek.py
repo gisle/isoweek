@@ -120,6 +120,10 @@ class Week(namedtuple('Week', ('year', 'week'))):
         """Return the last day the week as a date object"""
         return self.day(6)
 
+    def __iter__(self):
+        for d in range(7):
+            yield self.day(d)
+
     def toordinal(self):
         """Returns the proleptic Gregorian ordinal the week, where January 1 of year 1 starts the first week."""
         return self.monday().toordinal() // 7 + 1
