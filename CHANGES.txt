@@ -1,3 +1,8 @@
+v1.2.0, 2011-10-20
+
+    The module now works with Python 3.
+
+
 v1.1.0, 2011-10-10
 
     Add min/max/resolution attibutes to Week (like datetime.date has)
