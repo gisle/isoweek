@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from collections import namedtuple
 
 import sys
@@ -123,6 +123,11 @@ class Week(namedtuple('Week', ('year', 'week'))):
     def __iter__(self):
         for d in range(7):
             yield self.day(d)
+
+    def __contains__(self, day):
+        if isinstance(day, datetime):
+            day = day.date()
+        return self.day(0) <= day < self.day(7)
 
     def toordinal(self):
         """Returns the proleptic Gregorian ordinal the week, where January 1 of year 1 starts the first week."""
