@@ -120,13 +120,13 @@ class Week(namedtuple('Week', ('year', 'week'))):
         """Return the last day the week as a date object"""
         return self.day(6)
 
-    def __iter__(self):
+    def days(self):
+        """Returns an iterator over the 7 days in the week (each one a datetime.date object)"""
         for d in range(7):
             yield self.day(d)
 
-    def __contains__(self, day):
-        if isinstance(day, datetime):
-            day = day.date()
+    def contains(self, day):
+        """Check if the given datetime.date falls within the week"""
         return self.day(0) <= day < self.day(7)
 
     def toordinal(self):

@@ -92,6 +92,12 @@ Week.day(*num*)
 Week.monday(), Week.tuesday(),.. Week.sunday()
     Return the given day of week as a datetime.date object.
 
+Week.days()
+    Returns an iterator over the 7 days in the week.
+
+Week.contains(day)
+    Check if the given datetime.date falls within the week.
+
 Week.isoformat()
     Return a string representing the week in ISO 8610 format, "YYYYWww".
     For example Week(2011, 8).isoformat() == '2011W08'.

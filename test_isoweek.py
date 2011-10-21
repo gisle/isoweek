@@ -108,6 +108,17 @@ class TestWeek(unittest.TestCase):
         self.assertEqual(w.day(-1).isoformat(), "2011-05-15")
         self.assertEqual(w.day(10).isoformat(), "2011-05-26")
 
+        days = list(w.days())
+        self.assertEqual(len(days), 7)
+        self.assertEqual(days[0].isoformat(), "2011-05-16")
+        self.assertEqual(days[-1].isoformat(), "2011-05-22")
+
+        from datetime import date
+        self.assertFalse(w.contains(date(2011,5,15)))
+        self.assertTrue(w.contains(date(2011,5,16)))
+        self.assertTrue(w.contains(date(2011,5,22)))
+        self.assertFalse(w.contains(date(2011,5,23)))
+
     def test_arithmetics(self):
         w = Week(2011, 20)
         self.assertEqual(str(w + 0),   "2011W20")
