@@ -121,9 +121,9 @@ class Week(namedtuple('Week', ('year', 'week'))):
         return self.day(6)
 
     def days(self):
-        """Returns an iterator over the 7 days in the week (each one a datetime.date object)"""
-        for d in range(7):
-            yield self.day(d)
+        """Returns the 7 days of the week as a list (of datetime.date objects)"""
+        monday = self.day(0)
+        return [monday + timedelta(days=i) for i in range(7)]
 
     def contains(self, day):
         """Check if the given datetime.date falls within the week"""

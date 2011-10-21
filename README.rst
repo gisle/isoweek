@@ -93,7 +93,7 @@ Week.monday(), Week.tuesday(),.. Week.sunday()
     Return the given day of week as a datetime.date object.
 
 Week.days()
-    Returns an iterator over the 7 days in the week.
+    Returns the 7 days of the week as a list.
 
 Week.contains(day)
     Check if the given datetime.date falls within the week.
