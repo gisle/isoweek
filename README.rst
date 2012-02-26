@@ -10,6 +10,8 @@ standard also define a notation for identifying weeks; YYYYWww (where the "W"
 is a literal).  An example is "2011W08" which denotes the 8th week of year
 2011.  *Week* instances stringify to this form.
 
+See also http://en.wikipedia.org/wiki/ISO_week_date
+
 The *Week* instances are light weight and immutable with an interface similar
 to the datetime.date objects.  Example code::
 
