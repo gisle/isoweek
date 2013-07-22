@@ -137,5 +137,13 @@ class TestWeek(unittest.TestCase):
         self.assertEqual(str(w + Week.resolution),   "2011W21")
         self.assertEqual(str(w - Week.resolution),   "2011W19")
 
+    def test_arithmetics_subclass(self):
+        class MyWeek(Week):
+            pass
+        w = MyWeek(2011, 20)
+        next_week = w + 1
+        self.assertEqual(str(next_week),   "2011W21")
+        self.assertTrue(isinstance(next_week, MyWeek))
+
 if __name__ == '__main__':
     unittest.main()

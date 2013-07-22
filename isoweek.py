@@ -158,7 +158,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
         """
         if isinstance(other, timedelta):
             other = other.days // 7
-        return Week.fromordinal(self.toordinal() + other)
+        return self.__class__.fromordinal(self.toordinal() + other)
 
     def __sub__(self, other):
         """Subtracting two weeks give the number of weeks between them as an integer.
