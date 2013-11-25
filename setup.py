@@ -6,7 +6,7 @@ if sys.version_info < (2, 6, 0):
 from distutils.core import setup
 setup(
     name = 'isoweek',
-    version = '1.2.0',
+    version = '1.3.0',
     description = 'Objects representing a week',
     author='Gisle Aas',
     author_email='gisle@aas.no',
