@@ -10,4 +10,3 @@ python:
 install: python setup.py install
 
 script: python test_isoweek.py
-
