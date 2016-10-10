@@ -6,7 +6,7 @@ spanning Monday to Sunday.  There are 52 or 53 numbered weeks in a year.  Week
 1 is defined to be the first week with 4 or more days in January.
 
 It's called isoweek because this is the week definition of ISO 8601.  This
-standard also define a notation for identifying weeks; YYYYWww (where the "W"
+standard also define a notation for identifying weeks; yyyyWww (where the "W"
 is a literal).  An example is "2011W08" which denotes the 8th week of year
 2011.  *Week* instances stringify to this form.
 
