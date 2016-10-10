@@ -101,7 +101,7 @@ Week.contains(day)
     Check if the given datetime.date falls within the week.
 
 Week.isoformat()
-    Return a string representing the week in ISO 8610 format; "yyyyWww".
+    Return a string representing the week in ISO 8601 format; "yyyyWww".
     For example Week(2011, 8).isoformat() == '2011W08'.
 
 Week.__str__()
