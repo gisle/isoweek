@@ -53,10 +53,10 @@ Other constructors, all class methods:
     Return the week that contains the given datetime.date.
 
 *classmethod* Week.weeks_of_year(*year*)
-    Returns an iterator over the weeks of the given year.
+    Return an iterator over the weeks of the given year.
 
 *classmethod* Week.last_week_of_year(*year*)
-    Returns the last week of the given year.
+    Return the last week of the given year.
 
 Instance attributes (read-only):
 
@@ -95,7 +95,7 @@ Week.monday(), Week.tuesday(),.. Week.sunday()
     Return the given day of week as a datetime.date object.
 
 Week.days()
-    Returns the 7 days of the week as a list.
+    Return the 7 days of the week as a list.
 
 Week.contains(day)
     Check if the given datetime.date falls within the week.

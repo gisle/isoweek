@@ -68,7 +68,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
 
     @classmethod
     def weeks_of_year(cls, year):
-        """Returns an iterator over the weeks of the given year.
+        """Return an iterator over the weeks of the given year.
         Years have either 52 or 53 weeks."""
         w = cls(year, 1)
         while w.year == year:
@@ -77,7 +77,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
 
     @classmethod
     def last_week_of_year(cls, year):
-        """Returns the last week of the given year.
+        """Return the last week of the given year.
         This week with either have week-number 52 or 53.
 
         This will be the same as Week(year+1, 0), but will even work for
@@ -124,7 +124,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
         return self.day(6)
 
     def days(self):
-        """Returns the 7 days of the week as a list (of datetime.date objects)"""
+        """Return the 7 days of the week as a list (of datetime.date objects)"""
         monday = self.day(0)
         return [monday + timedelta(days=i) for i in range(7)]
 
@@ -133,11 +133,11 @@ class Week(namedtuple('Week', ('year', 'week'))):
         return self.day(0) <= day < self.day(7)
 
     def toordinal(self):
-        """Returns the proleptic Gregorian ordinal the week, where January 1 of year 1 starts the first week."""
+        """Return the proleptic Gregorian ordinal the week, where January 1 of year 1 starts the first week."""
         return self.monday().toordinal() // 7 + 1
 
     def replace(self, year=None, week=None):
-        """Returns a Week with either the year or week attribute value replaced"""
+        """Return a Week with either the year or week attribute value replaced"""
         return self.__class__(self.year if year is None else year,
                               self.week if week is None else week)
 
