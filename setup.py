@@ -8,7 +8,7 @@ from setuptools import setup
 
 setup(
     name = 'isoweek',
-    version = '1.3.2',
+    version = '1.3.3',
     description = 'Objects representing a week',
     author='Gisle Aas',
     author_email='gisle@aas.no',

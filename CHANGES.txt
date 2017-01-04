@@ -1,3 +1,13 @@
+v1.3.3, 2017-01-04
+
+    Update version numbers everywhere
+
+
+v1.3.2, 2017-01-04
+
+    Generate wheel
+
+
 v1.3.1, 2016-10-10
 
     Documentation fixes
