@@ -100,27 +100,27 @@ class Week(namedtuple('Week', ('year', 'week'))):
         return self.day(0)
 
     def tuesday(self):
-        """Return the second day the week as a date object"""
+        """Return the second day of the week as a date object"""
         return self.day(1)
 
     def wednesday(self):
-        """Return the third day the week as a date object"""
+        """Return the third day of the week as a date object"""
         return self.day(2)
 
     def thursday(self):
-        """Return the fourth day the week as a date object"""
+        """Return the fourth day of the week as a date object"""
         return self.day(3)
 
     def friday(self):
-        """Return the fifth day the week as a date object"""
+        """Return the fifth day of the week as a date object"""
         return self.day(4)
 
     def saturday(self):
-        """Return the sixth day the week as a date object"""
+        """Return the sixth day of the week as a date object"""
         return self.day(5)
 
     def sunday(self):
-        """Return the last day the week as a date object"""
+        """Return the last day of the week as a date object"""
         return self.day(6)
 
     def days(self):
@@ -133,7 +133,7 @@ class Week(namedtuple('Week', ('year', 'week'))):
         return self.day(0) <= day < self.day(7)
 
     def toordinal(self):
-        """Return the proleptic Gregorian ordinal the week, where January 1 of year 1 starts the first week."""
+        """Return the proleptic Gregorian ordinal of the week, where January 1 of year 1 starts the first week."""
         return self.monday().toordinal() // 7 + 1
 
     def replace(self, year=None, week=None):
